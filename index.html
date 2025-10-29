@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miyaxx</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Video -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="miyaxx gif amber caires .mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Static Background (hidden initially) -->
+    <div class="static-background" id="static-bg"></div>
+    
+    <!-- Large Icon Overlay (hidden initially) -->
+    <div class="large-icon-overlay" id="large-icon"></div>
+
+    <!-- Home Page State -->
+    <div class="home-container" id="home-container">
+        <!-- Center Logo -->
+        <h1 class="logo" id="logo">Miyaxx</h1>
+        
+        <!-- Contact Email -->
+        <p class="contact-email">for all inquiries reach out to miyaxxtheband(at)gmail(dot)com</p>
+        
+        <!-- Floating Icons -->
+        <div class="icon-container datura" id="datura-icon" data-page="listen">
+            <img src="isolated datura.png" alt="Datura" class="icon-image">
+            <span class="icon-text">listen</span>
+        </div>
+        
+        <div class="icon-container grass" id="grass-icon" data-page="shows">
+            <img src="isolated grass.png" alt="Grass" class="icon-image">
+            <span class="icon-text">shows</span>
+        </div>
+        
+        <div class="icon-container calendula" id="calendula-icon" data-page="about">
+            <img src="isolated spiral calendula.png" alt="Calendula" class="icon-image">
+            <span class="icon-text">about</span>
+        </div>
+    </div>
+
+    <!-- Content Page State -->
+    <div class="content-container" id="content-container">
+        <!-- Header with logo and icon menu -->
+        <header class="content-header" id="content-header">
+            <h2 class="header-logo" id="header-logo">Miyaxx</h2>
+            <nav class="icon-nav">
+                <div class="nav-icon-container" id="nav-datura" data-page="listen">
+                    <img src="isolated datura.png" alt="Datura" class="nav-icon-image">
+                    <span class="nav-icon-text">listen</span>
+                </div>
+                <div class="nav-icon-container" id="nav-grass" data-page="shows">
+                    <img src="isolated grass.png" alt="Grass" class="nav-icon-image">
+                    <span class="nav-icon-text">shows</span>
+                </div>
+                <div class="nav-icon-container" id="nav-calendula" data-page="about">
+                    <img src="isolated spiral calendula.png" alt="Calendula" class="nav-icon-image">
+                    <span class="nav-icon-text">about</span>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Page Content Area -->
+        <main class="page-content" id="page-content">
+            <!-- Content will be dynamically inserted here -->
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
