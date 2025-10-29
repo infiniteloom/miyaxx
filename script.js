@@ -45,13 +45,7 @@ const pageContent = {
     about: {
         title: 'About',
         content: `
-            <ul class="show-list">
-                <li class="show-item">
-                    <div class="show-details">
-                        <div class="show-city">Miyaxx is Lea Thomas and John Thayer, making music in the Catskill Mountains.</div>
-                    </div>
-                </li>
-            </ul>
+            <p class="about-description">Miyaxx is Lea Thomas and John Thayer, making music in the Catskill Mountains.</p>
         `
     }
 };
@@ -214,6 +208,9 @@ function loadPageContent(page) {
                 ${content.content}
             </div>
         `;
+        
+        // Scroll content container to top
+        contentContainer.scrollTop = 0;
     }
 }
 
