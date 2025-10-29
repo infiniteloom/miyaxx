@@ -62,6 +62,7 @@ let currentState = 'home'; // 'home' or 'content'
 let currentPage = null;
 
 // DOM elements
+const bgVideo = document.getElementById('bg-video');
 const homeContainer = document.getElementById('home-container');
 const contentContainer = document.getElementById('content-container');
 const staticBg = document.getElementById('static-bg');
@@ -79,6 +80,38 @@ const calendulaIcon = document.getElementById('calendula-icon');
 const navDatura = document.getElementById('nav-datura');
 const navGrass = document.getElementById('nav-grass');
 const navCalendula = document.getElementById('nav-calendula');
+
+function ensureBackgroundVideoPlays() {
+    if (!bgVideo) return;
+
+    bgVideo.muted = true;
+    bgVideo.setAttribute('muted', '');
+    bgVideo.setAttribute('playsinline', '');
+    bgVideo.setAttribute('webkit-playsinline', '');
+
+    const playPromise = bgVideo.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            // Autoplay restrictions may block playback; will retry after user interaction.
+        });
+    }
+}
+
+if (bgVideo) {
+    if (bgVideo.readyState >= 2) {
+        ensureBackgroundVideoPlays();
+    } else {
+        bgVideo.addEventListener('loadeddata', ensureBackgroundVideoPlays);
+    }
+
+    const attemptAutoplayWithUserGesture = () => {
+        ensureBackgroundVideoPlays();
+    };
+
+    ['touchstart', 'click'].forEach(eventName => {
+        document.addEventListener(eventName, attemptAutoplayWithUserGesture, { once: true });
+    });
+}
 
 // Mobile tap reveal functionality
 let tapTimeout = null;
