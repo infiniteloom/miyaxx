@@ -92,6 +92,14 @@ homeIcons.forEach(icon => {
     icon.addEventListener('touchstart', (e) => {
         if (!icon.classList.contains('reveal')) {
             e.preventDefault();
+            
+            // Remove reveal class from all other icons
+            homeIcons.forEach(otherIcon => {
+                if (otherIcon !== icon) {
+                    otherIcon.classList.remove('reveal');
+                }
+            });
+            
             icon.classList.add('reveal');
             
             // Clear any existing timeout
