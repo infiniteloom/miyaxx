@@ -140,8 +140,8 @@ body {
 }
 
 .icon-container.grass {
-    bottom: 15%;
-    left: 15%;
+    bottom: 10%;
+    left: 20%;
 }
 
 .icon-container.calendula {
@@ -189,7 +189,6 @@ body {
 
 .icon-container.reveal .icon-text {
     opacity: 1;
-    pointer-events: auto;
 }
 
 /* Content Container (Hidden Initially) */
@@ -336,6 +335,16 @@ body {
     margin-bottom: 1rem;
 }
 
+.content-section a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+}
+
+.content-section a:hover {
+    opacity: 0.7;
+}
+
 /* Show Dates */
 .show-list {
     list-style: none;
@@ -380,6 +389,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .logo {
+        font-size: clamp(2.2rem, 8vw, 5rem);
+    }
+    
     .content-header {
         padding: 1rem 1.5rem;
         flex-direction: column;
@@ -410,8 +423,8 @@ body {
     }
     
     .icon-container.grass {
-        bottom: 25%;
-        left: 10%;
+        bottom: 20%;
+        left: 15%;
     }
     
     .icon-container.calendula {

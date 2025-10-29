@@ -3,6 +3,12 @@ const pageContent = {
     listen: {
         title: 'Listen',
         content: `
+            <p>Coming soon. Follow us <a href="https://instagram.com/miyaxx___" target="_blank" rel="noopener noreferrer">@miyaxx___</a></p>
+        `
+    },
+    shows: {
+        title: 'Shows',
+        content: `
             <h3>Japan Tour 2025</h3>
             <ul class="show-list">
                 <li class="show-item">
@@ -36,20 +42,16 @@ const pageContent = {
             </ul>
         `
     },
-    shows: {
-        title: 'Shows',
-        content: `
-            <h3>Upcoming Shows</h3>
-            <p>Check back soon for upcoming show announcements.</p>
-            <h3>Past Shows</h3>
-            <p>Miyaxx has performed at venues across the globe, bringing their unique sound to audiences everywhere.</p>
-        `
-    },
     about: {
         title: 'About',
         content: `
-            <p>Miyaxx is a band that pushes the boundaries of sound and creates immersive musical experiences.</p>
-            <p>Follow us on our journey as we continue to explore new sonic territories.</p>
+            <ul class="show-list">
+                <li class="show-item">
+                    <div class="show-details">
+                        <div class="show-city">Miyaxx is Lea Thomas and John Thayer, making music in the Catskill Mountains.</div>
+                    </div>
+                </li>
+            </ul>
         `
     }
 };
@@ -89,7 +91,13 @@ let tapTimeout = null;
 const homeIcons = [daturaIcon, grassIcon, calendulaIcon];
 
 homeIcons.forEach(icon => {
+    let isMobile = false;
+    let revealedOnce = false;
+    
+    // Detect if this is a touch device
     icon.addEventListener('touchstart', (e) => {
+        isMobile = true;
+        
         if (!icon.classList.contains('reveal')) {
             e.preventDefault();
             
@@ -101,6 +109,7 @@ homeIcons.forEach(icon => {
             });
             
             icon.classList.add('reveal');
+            revealedOnce = true;
             
             // Clear any existing timeout
             if (tapTimeout) clearTimeout(tapTimeout);
@@ -108,20 +117,25 @@ homeIcons.forEach(icon => {
             // Remove reveal class after 3 seconds of inactivity
             tapTimeout = setTimeout(() => {
                 icon.classList.remove('reveal');
+                revealedOnce = false;
             }, 3000);
         }
-    });
+    }, { passive: false });
     
     icon.addEventListener('click', (e) => {
         const page = icon.getAttribute('data-page');
         
         // On mobile, first click reveals, second click navigates
-        if (window.innerWidth <= 768) {
-            if (icon.classList.contains('reveal')) {
+        if (isMobile && window.innerWidth <= 768) {
+            if (revealedOnce && icon.classList.contains('reveal')) {
+                e.preventDefault();
                 navigateToPage(page);
+                icon.classList.remove('reveal');
+                revealedOnce = false;
             }
+            // First tap just reveals, don't navigate
         } else {
-            // Desktop: direct navigation
+            // Desktop: direct navigation on click
             navigateToPage(page);
         }
     });
@@ -227,12 +241,5 @@ document.addEventListener('click', (e) => {
             });
         }
     }
-});
-
-// Prevent default touch behavior on icons to avoid double-tap zoom
-homeIcons.forEach(icon => {
-    icon.addEventListener('touchend', (e) => {
-        e.preventDefault();
-    }, { passive: false });
 });
 
